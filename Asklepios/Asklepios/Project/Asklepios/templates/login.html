@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login | Asklepios</title>
+    <link rel="stylesheet" href="{% static 'css/login_page.css' %}">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Welcome To Asklepios!</h1>
+      <form method="post">
+        {%csrf_token%}
+        <div class="txt_field">
+          <input type="text" required name="login_username">
+          <span></span>
+          <label>Username</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" required name="login_password">
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div class="pass"></div>
+        <input type="submit" value="Login" required >
+        <div class="signup_link">
+          
+        </div>
+
+        <div>
+          <a href="{% url 'register' %}">Create An Account</a>
+        </div>
+        {%if error%}
+
+      <script> alert("Kullanıcı adı veya parola hatalı"); </script>
+      {%endif%}
+        
+        
+      </form>
+    </div>
+
+    
+
+  </body>
+</html>

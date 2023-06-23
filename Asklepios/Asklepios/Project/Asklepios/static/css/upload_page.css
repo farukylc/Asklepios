@@ -1,0 +1,33 @@
+.navbar{
+    background-color: rgb(66, 68, 68);
+}
+
+.upper_col{
+
+    padding-top: 50px;
+    border: 1px solid;
+    padding-bottom: 50px;
+
+}
+.middle_col{
+    padding-top: 50px;
+    
+    padding-bottom: 50px;
+
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    width: 18rem;
+    margin-right: 1rem;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;}

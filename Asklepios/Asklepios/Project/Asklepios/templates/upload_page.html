@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/upload_page.css' %}">
+    <script src="https://kit.fontawesome.com/d0b0f45255.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />    
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#" style="color: white; ">Asklepios</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#" style="color: white;"> <i style="padding-right: 10px;" class="fa-solid fa-house"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: white;"><i class="fa-solid fa-clock-rotate-left" style="padding-right: 10px;"></i> Old Results</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a style="color: white; " class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i style="padding-right: 10px;" class="fa-solid fa-disease"></i>Diseases
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#"><i style="padding-right: 10px;" class="fa-solid fa-lungs "></i>Pneumonia</a>
+                  <a class="dropdown-item" href="#"></i>Others soon...</a>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    
+
+      <div class="d-flex justify-content-center">
+        <div class="col-lg-5 upper_col">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="First name" name="first_name" required>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Surname" name="surname" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choose Your Chest X-ray to analyse:</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="exampleFormControlFile1">
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+        
+        </div>
+    </div>
+
+    <h3>Old Results:</h1>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {% for userData in user_datas %}
+            <div class="swiper-slide">
+              <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{userData.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{userData.name}} {{userData.surname}}</h5>
+                  <p class="card-text">{{userData.created_at}}</p>
+                  <a href="#" class="btn btn-success">{{userData.result}}</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      
+    
+      
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 5,
+        spaceBetween: 20,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    </script>
+
+      
+</body>
+</html>
+ 
